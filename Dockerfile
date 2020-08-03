@@ -1,10 +1,10 @@
-FROM node:12.0.0
-MAINTAINER ISCAS {tangting17,xuyuanjia2017}@otcaix.iscas.ac.cn
-ENV TZ Asia/Shanghai
-COPY . /home/kubeext-dashboard
-WORKDIR /home/kubeext-dashboard
-EXPOSE 9537
-RUN npm config set registry https://registry.npm.taobao.org \
-    && npm install
-CMD ["npm", "run", "dev"]
 
+FROM tomcat
+
+MAINTAINER lian 864755547@qq.com
+
+COPY /dist/ /usr/local/tomcat/webapps/ROOT/
+
+EXPOSE 9527
+
+CMD /usr/local/tomcat/bin/startup.sh && tail -f /usr/local/tomcat/logs/catalina.out
